@@ -18,11 +18,10 @@ export default function App() {
     createReq({
       query: 'posts',
       method: 'GET',
-    })
-      .then((data) => setPosts(data)) // знаю, как реализовать подгрузку только новых сообщений, но в условии этого нет, пока пропустим
-      .then(() => {
-        setLoading(false);
-      });
+    }).then((data) => {
+      setPosts(data);
+      setLoading(false);
+    }); // знаю, как реализовать подгрузку только новых сообщений, но в условии этого нет, пока пропустим
   };
 
   const onPostClickHandler = ({ id, history }) => {
