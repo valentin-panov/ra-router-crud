@@ -9,6 +9,8 @@ import PostViewer from './components/PostViewer';
 import PostContext from './components/PostContext';
 import PostEditor from './components/PostEditor';
 
+const basURL = '/ra-router-crud';
+
 export default function App() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -25,7 +27,7 @@ export default function App() {
   };
 
   const onPostClickHandler = ({ id, history }) => {
-    history.push(`/posts/${id}`);
+    history.push(basURL + `/posts/${id}`);
   };
 
   const onNewPostSubmitHandler = ({ event, post, history }) => {
@@ -37,7 +39,7 @@ export default function App() {
         content: post,
       });
     }
-    history.push('/');
+    history.push(basURL + '/');
     getPosts();
   };
 
@@ -49,7 +51,7 @@ export default function App() {
         id,
       });
     }
-    history.push('/');
+    history.push(basURL + '/');
     getPosts();
   };
 
@@ -63,7 +65,7 @@ export default function App() {
         id: id,
       });
     }
-    history.push('/');
+    history.push(basURL + '/');
     getPosts();
   };
 
@@ -82,7 +84,7 @@ export default function App() {
             <Switch>
               {posts.length && (
                 <Route
-                  path='/'
+                  path={basURL + '/'}
                   exact
                   render={(props) => (
                     <Posts
@@ -94,7 +96,7 @@ export default function App() {
                 />
               )}
               <Route
-                path='/posts/new'
+                path={basURL + '/posts/new'}
                 exact
                 render={(props) => (
                   <PostCreator
@@ -105,7 +107,7 @@ export default function App() {
               />
 
               <Route
-                path='/posts/:id'
+                path={basURL + '/posts/:id'}
                 exact
                 render={(props) => (
                   <PostViewer {...props} onDeleteHandler={onDeleteHandler} />
@@ -113,7 +115,7 @@ export default function App() {
               />
 
               <Route
-                path='/posts/edit/:id'
+                path={basURL + '/posts/edit/:id'}
                 exact
                 render={(props) => (
                   <PostEditor {...props} onSaveHandler={onSaveHandler} />
