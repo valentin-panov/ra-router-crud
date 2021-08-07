@@ -6,7 +6,7 @@ import 'moment/locale/ru';
 import CloseIcon from '@material-ui/icons/Close';
 import { Button, TextField } from '@material-ui/core';
 
-export default function PostEditor({ match, onSaveHandler }) {
+export default function PostEditor({ match, onSaveHandler, basURL }) {
   const [post, setPost] = useState('');
   let history = useHistory();
   const id = match.params.id;
@@ -14,7 +14,7 @@ export default function PostEditor({ match, onSaveHandler }) {
     <div className='card'>
       <div className='head-holder'>
         <span className='post-editor_header'>Редактировать публикацию</span>
-        <Link to='/'>
+        <Link to={basURL + '/'}>
           <CloseIcon style={{ cursor: 'pointer' }} />
         </Link>
       </div>

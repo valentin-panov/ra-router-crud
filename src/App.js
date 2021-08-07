@@ -9,11 +9,10 @@ import PostViewer from './components/PostViewer';
 import PostContext from './components/PostContext';
 import PostEditor from './components/PostEditor';
 
-const basURL = '/ra-router-crud';
-
 export default function App() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
+  const basURL = '/ra-router-crud';
 
   const getPosts = () => {
     setLoading(true);
@@ -78,7 +77,7 @@ export default function App() {
       <PostContext.Provider value={posts}>
         <div className='wrapper>'>
           <div className='container'>
-            <CreatePostHeader />
+            <CreatePostHeader basURL={basURL} />
             {loading && <Loading />}
 
             <Switch>
@@ -102,6 +101,7 @@ export default function App() {
                   <PostCreator
                     {...props}
                     onNewPostSubmitHandler={onNewPostSubmitHandler}
+                    basURL={basURL}
                   />
                 )}
               />
@@ -110,7 +110,11 @@ export default function App() {
                 path={basURL + '/posts/:id'}
                 exact
                 render={(props) => (
-                  <PostViewer {...props} onDeleteHandler={onDeleteHandler} />
+                  <PostViewer
+                    {...props}
+                    onDeleteHandler={onDeleteHandler}
+                    basURL={basURL}
+                  />
                 )}
               />
 
@@ -118,7 +122,11 @@ export default function App() {
                 path={basURL + '/posts/edit/:id'}
                 exact
                 render={(props) => (
-                  <PostEditor {...props} onSaveHandler={onSaveHandler} />
+                  <PostEditor
+                    {...props}
+                    onSaveHandler={onSaveHandler}
+                    basURL={basURL}
+                  />
                 )}
               />
             </Switch>

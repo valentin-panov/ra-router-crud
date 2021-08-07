@@ -6,13 +6,13 @@ import 'moment/locale/ru';
 import CloseIcon from '@material-ui/icons/Close';
 import { Button } from '@material-ui/core';
 
-export default function PostViewer({ match, onDeleteHandler }) {
+export default function PostViewer({ match, onDeleteHandler, basURL }) {
   let history = useHistory();
   const id = match.params.id;
   return (
     <div className='card'>
       <div className='head-holder'>
-        <Link to='/'>
+        <Link to={basURL + '/'}>
           <CloseIcon style={{ cursor: 'pointer' }} />
         </Link>
       </div>
@@ -28,7 +28,7 @@ export default function PostViewer({ match, onDeleteHandler }) {
         }}
       </PostContext.Consumer>
       <div className='btn-holder'>
-        <Link to={`/posts/edit/${id}`}>
+        <Link to={basURL + `/posts/edit/${id}`}>
           <Button variant='contained' color='primary'>
             Изменить
           </Button>
